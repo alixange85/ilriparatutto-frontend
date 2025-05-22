@@ -3,24 +3,38 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>iLRiparaTutto</title>
+  <title>iLRiparaTutto - Nuova Riparazione</title>
 </head>
 <body style="font-family: sans-serif; padding: 20px;">
-  <h1 style="color: #0a7b83;">iLRiparaTutto - Gestione Riparazioni</h1>
-  <p>Benvenuto nel pannello di gestione. Backend attivo su:</p>
-  <code>{backend_url}</code>
+  <h1 style="color: #0a7b83;">Nuova Riparazione</h1>
+  <form id="repairForm">
+    <label>Nome cliente:<br><input type="text" name="cliente" required></label><br><br>
+    <label>Telefono:<br><input type="text" name="telefono" required></label><br><br>
+    <label>Modello dispositivo:<br><input type="text" name="modello" required></label><br><br>
+    <label>Tipo problema:<br><textarea name="problema" required></textarea></label><br><br>
+    <button type="submit">Invia Riparazione</button>
+  </form>
 
-  <h2>Azione di esempio:</h2>
-  <button onclick="testBackend()">Test connessione backend</button>
-  <p id="result" style="margin-top: 10px;"></p>
+  <p id="result" style="margin-top: 20px;"></p>
 
   <script>
-    function testBackend() {
-      fetch('https://ilriparatutto-1.onrender.com')
-        .then(res => res.text())
-        .then(data => document.getElementById('result').innerText = data)
-        .catch(err => document.getElementById('result').innerText = 'Errore: ' + err);
-    }
+    document.getElementById('repairForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch('https://ilriparatutto-1.onrender.com/nuova-riparazione', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const msg = await res.text();
+        document.getElementById('result').innerText = msg;
+      } catch (err) {
+        document.getElementById('result').innerText = 'Errore durante l'invio: ' + err;
+      }
+    });
   </script>
 </body>
 </html>
