@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>iLRiparaTutto</title>
+</head>
+<body style="font-family: sans-serif; padding: 20px;">
+  <h1 style="color: #0a7b83;">iLRiparaTutto - Gestione Riparazioni</h1>
+  <p>Benvenuto nel pannello di gestione. Backend attivo su:</p>
+  <code>{backend_url}</code>
+
+  <h2>Azione di esempio:</h2>
+  <button onclick="testBackend()">Test connessione backend</button>
+  <p id="result" style="margin-top: 10px;"></p>
+
+  <script>
+    function testBackend() {
+      fetch('https://ilriparatutto-1.onrender.com')
+        .then(res => res.text())
+        .then(data => document.getElementById('result').innerText = data)
+        .catch(err => document.getElementById('result').innerText = 'Errore: ' + err);
+    }
+  </script>
+</body>
+</html>
