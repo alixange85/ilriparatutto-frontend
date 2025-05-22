@@ -1,0 +1,27 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f1f7f9;
+}
+header {
+  background-color: #0a7b83;
+  color: white;
+  padding: 1em;
+  text-align: center;
+}
+.container {
+  padding: 1.5em;
+}
+input, textarea, button {
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  padding: 0.5em;
+  font-size: 1em;
+}
+button {
+  background-color: #1eaa96;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
